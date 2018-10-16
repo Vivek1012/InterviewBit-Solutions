@@ -1,0 +1,57 @@
+public class Solution {
+    public int solve(ArrayList<String> A) {
+        int n = A.size();
+        if(n < 3)
+            return -1;
+        
+        ArrayList<Double> d = new ArrayList<Double>();
+        
+        for(String s : A)
+        {
+            d.add(Double.parseDouble(s));
+        }
+        
+        double i = d.get(0);
+        double j = d.get(1);
+        double k = d.get(2);
+        
+        
+        double val = i + k + j;
+        
+        if(val > 1 && val < 2)
+            return 1;
+            
+        for(int x = 3 ; x < n ; x++)
+        {
+            if(val > 2)    
+                {
+                    if(i > j && i > k)
+                        i = d.get(x);
+                    else if(j > i  && j > k)
+                        j = d.get(x);
+                    else if(k > i && k > j)
+                        k = d.get(x);
+                    
+                    val = i + j + k;
+                }
+            else if(val < 1)
+                {
+                   if(i < j && i < k)
+                        i = d.get(x);
+                    else if(j < i  && j < k)
+                        j = d.get(x);
+                    else if(k < i && k < j)
+                        k = d.get(x);
+                    
+                    val = i + j + k;
+                }
+            
+            if(val < 2 && val > 1)
+                return 1;
+            
+        }
+        
+        return 0;
+        
+    }
+}
