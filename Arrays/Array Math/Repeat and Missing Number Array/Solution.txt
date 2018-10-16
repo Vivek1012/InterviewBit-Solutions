@@ -1,0 +1,55 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] A) {
+        
+        int n = A.length;
+        long sum = 0;
+        long sum_a = 0;
+        int ret[] = new int[2];
+        for(int i = 1 ; i <= n ; i++)
+        {
+            sum = sum + i;
+        }
+       
+        for(int i = 0 ; i < n ; i++)
+        {
+            sum_a = sum_a + A[i];
+        }
+        
+        long diff = Math.abs(sum_a - sum);
+        long s_diff = sum_a - sum;
+       
+        
+        long pow_sum = 0;
+        long pow_sum_a = 0;
+        for(long i = 1 ; i <= n ; i++)
+        {
+            pow_sum = pow_sum + (i*i);
+        }
+      
+        for(int i = 0 ; i < n ; i++)
+        {
+            pow_sum_a = pow_sum_a + ((long)A[i] * (long)A[i]);
+        }
+       
+        long pow_diff = Math.abs(pow_sum_a - pow_sum);
+        for(int i = 1 ; i <= n-diff ; i++)
+        {
+            if(Math.abs(Math.pow(i,2) - Math.pow(i+diff,2)) == pow_diff)
+            {
+                ret[0] = i;
+                ret[1] = i+(int)diff;
+            }
+        }
+        
+         if(s_diff > 0)
+        {
+            int temp = ret[0];
+            ret[0] = ret[1];
+            ret[1] = temp;
+        }
+       
+        return ret;
+        
+    }
+}
