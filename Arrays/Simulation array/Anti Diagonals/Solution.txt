@@ -1,0 +1,46 @@
+public class Solution {
+    public int[][] diagonal(int[][] A) {
+        
+        int n = A.length;
+        int size = (2*n) - 1;
+        int arr[][] = new int[size][];
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+           arr[i] = new int[i+1];
+        }
+        for(int i = n ; i < size ; i++)
+        {
+            arr[i] = new int[size-i];
+        }
+        
+        int i = 0, j = 0;
+        for(int r = 0 ; r < n ; r++)
+        {
+            j = r;
+            i = 0;
+            for(int c = 0 ; c <= r ; c++)
+                {
+                    arr[r][c] = A[i][j];
+                    j--;
+                    i++;
+                } 
+        }
+        
+        for(int r = n ; r < size ; r++)
+        {
+            j = n-1;
+            i = r-j;
+            
+            for(int c = 0 ; c < arr[r].length ; c++)
+                {
+                    arr[r][c] = A[i][j];
+                    j--;
+                    i++;
+                } 
+        }
+        
+        
+        return arr;
+    }
+}

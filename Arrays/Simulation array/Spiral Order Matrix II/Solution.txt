@@ -1,0 +1,49 @@
+public class Solution {
+    public int[][] generateMatrix(int A) {
+        int n = A;
+        int arr[][] = new int[n][n];
+        int k = n*n;
+
+        int jmin = 0;
+        int jmax = n - 1;
+        int imin = jmin + 1;
+        int imax = n - 1;
+
+        int count = 0;
+        int i = 0;
+        int j = 0;
+        while (count != k) {
+            for (j = jmin; j <= jmax; j++) {
+                arr[i][j] = ++count;
+            }
+            if (count == k)
+                break;
+            j = jmax--;
+            
+            for (i = imin; i <= imax; i++) {
+                arr[i][j] = ++count;
+            }
+            if (count == k)
+                break;
+            i = imax--;
+            
+            for (j = jmax; j >= jmin; j--) {
+                arr[i][j] = ++count;
+            }
+            if (count == k)
+                break;
+            j = jmin++;
+
+            for (i = imax; i >= imin; i--) {
+                arr[i][j] = ++count;
+            }
+            if (count == k)
+                break;
+            i = imin++;
+
+        }
+        
+
+        return arr;
+    }
+}

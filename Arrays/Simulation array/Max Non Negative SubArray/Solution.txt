@@ -1,0 +1,76 @@
+public class Solution {
+    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
+             
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+       
+       int min_pos = 0;
+       int max_pos = 0;
+       int max_length = Integer.MAX_VALUE;
+       long max_sum = 0;
+       int n = A.size();
+       int i = 0;
+       int j = 0;
+       long sum = 0;
+       
+       while(i < n)
+       {
+              j = i;
+              while(A.get(j) >= 0)
+              {
+                  sum = sum + A.get(j);
+                  j++;
+                  if(j == n)
+                  {
+                      j--;
+                      break;
+                  }
+              }
+
+              if(sum >= max_sum && A.get(i) >= 0)
+              {
+                  
+                  if(sum > max_sum)
+                  {
+                      temp.clear();
+                      min_pos = i;
+                      max_pos = j;
+                      if(j == n-1 && A.get(j) > 0)
+                        j++;
+                      while(i<j)                   
+                      {
+                          temp.add(A.get(i));
+                          i++;
+                      }
+                  }
+                  else
+                  {
+                      j++;
+                      if(((max_pos - min_pos) < (j-i)))
+                      {
+                          temp.clear();
+                           min_pos = i;
+                           max_pos = j;
+                           if(j != n)
+                               j--;
+                          while(i<j)                   
+                          {
+                              temp.add(A.get(i));
+                              i++;
+                          }
+                      }
+                  }
+                  
+                  max_sum = sum;
+                  max_length = temp.size();
+              }
+              else
+              {
+                  i++;
+                  j++;
+              }
+              sum = 0;
+              i = j;
+       }
+       return temp;
+    }
+}
