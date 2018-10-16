@@ -1,0 +1,58 @@
+public class Solution {
+    public void nextPermutation(List<Integer> a) {
+        
+        int n = a.size();
+        if(n == 1)
+            return;
+        
+        
+        int i = n-2;
+        int temp = 0;
+        
+        for(i = n-2 ; i >= 0 ; i--)
+        {
+            if(a.get(i) < a.get(i+1))
+                break;
+        }
+        
+        if(i < 0)
+            {
+                i = 0;
+                while(i < n)
+                {
+                    temp = a.get(i);
+                    a.set(i , a.get(n-1));
+                    a.set(n-1 , temp);
+                    
+                    i++;
+                    n--;
+                }
+                
+                return;
+            }
+            
+        int pos = i;
+        int curr = i+1;
+        
+        i++;
+        for(; i < n ; i++)
+        {
+            if(a.get(pos) > a.get(i))
+                break;
+            else
+                curr = i;
+        }
+        
+        temp = a.get(curr);
+        a.set(curr , a.get(pos));
+        a.set(pos , temp);
+        
+        
+        //System.out.println(a);
+        pos++;
+        // System.out.println(pos + "\t" + a.get(pos));
+        
+        
+        Collections.sort(a.subList(pos,n));
+    }
+}
