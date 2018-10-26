@@ -1,0 +1,24 @@
+public class Solution {
+    public int cpFact(int A, int B) {
+        
+        //check if A and B are co prime
+        while(true)
+        {
+            if(gcd(A,B) != 1)
+                A = A/gcd(A,B);
+            else
+            break;
+        }
+        return A;
+    }
+    public int gcd(int A, int B) {
+        
+         if(A<B)
+        return gcd(B,A);
+        if(B==0)
+            return A;
+        else
+            return gcd(B,A%B);
+    }
+    
+}
