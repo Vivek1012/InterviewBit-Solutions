@@ -1,0 +1,23 @@
+public class Solution {
+    public String convertToTitle(int A) {
+        
+        
+        int a = A;
+        String str = "";
+        int res = 0;
+        
+        while(a>0)
+        {
+            res = a%26;
+
+            if(res == 0)
+                res = 26;
+
+                str = (char)(res + 64) + "" + str;
+            a = a - res;
+            a = a/26; 
+        }
+        
+        return str;
+    }
+}
