@@ -1,0 +1,54 @@
+public class Solution {
+    public int[] primesum(int A) {
+    
+        
+        
+        int is_prime[] = new int[A+1];
+        
+        for(int i = 0 ; i <= A ; i++)
+        {
+            is_prime[i] = 1;
+        }
+        
+        for(int p = 2 ; p*p <= A ; p++)
+        {
+            if(is_prime[p] == 1)
+            {
+                for(int i = 2*p ; i <= A ; i = i + p)
+                {
+                    is_prime[i] = 0;
+                }
+            }
+        }
+        
+        int ret_arr[] = new int[2];
+        ArrayList<Integer> arr = new ArrayList<Integer>(); 
+        
+        
+         for(int i = 2; i <= A; i++)
+        {
+            if(is_prime[i] == 1)
+            {
+                arr.add(i);
+            }
+        }        
+
+        ArrayList<Integer> ret_arrlist = new ArrayList<Integer>();
+        
+        for(int i = 0 ; i < arr.size() ; i++)
+        {
+            //int ind = Collections.binarySearch(arr , arr.get(indexOf(A-arr.get(i))));
+            boolean ind = arr.contains(A-arr.get(i));
+            
+            if(ind == true)
+            {
+                ret_arr[0] = arr.get(i);        
+                ret_arr[1] = A-arr.get(i);
+                break;
+            }
+            
+        }
+        return ret_arr;
+    }
+   
+}

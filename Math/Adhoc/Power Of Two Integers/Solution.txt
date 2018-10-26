@@ -1,0 +1,30 @@
+public class Solution {
+    public int isPower(int A) {
+    int sub = 2;
+    int sup = (int)Math.sqrt(A);
+    int temp = 0;
+    if(sup > 32)
+        sup = 32;
+    if(A == 1)
+        return 1;
+    
+    while(sup > 1)
+    {
+        temp = (int)Math.pow(sub,sup);
+        
+        if(temp == A)
+            return 1;
+        
+        if(temp > A)
+        {
+            sup--;
+        }
+        else
+        {
+            sub++;
+        }
+        
+    }
+    return 0 ;
+    }
+}
