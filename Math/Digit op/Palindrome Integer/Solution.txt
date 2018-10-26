@@ -1,0 +1,21 @@
+public class Solution {
+    public int isPalindrome(int A) {
+        
+        int a = A;
+        int sum = 0;
+
+
+        while(a>0)
+        {
+            sum = sum*10 + a%10;
+            a = a/10;
+        }
+        
+        
+        if(sum == A)
+            return 1;
+        else
+            return 0;
+
+    }
+}

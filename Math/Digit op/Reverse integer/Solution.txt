@@ -1,0 +1,27 @@
+public class Solution {
+    public int reverse(int A) {
+        
+        Long a = Long.valueOf(A);
+        long sum = 0;
+        long b = 0;
+        int check_negative = (a<0) ? -1 : 1;
+        
+        if(check_negative == -1)
+            a = -a;
+        
+        while(a > 0)
+        {
+            b = a % 10;
+            sum = sum*10 + b;
+            a = a/10;
+        }
+        
+        int max = Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
+        
+        if((sum * check_negative) > max || (sum * check_negative) < min)
+            return 0;
+        
+        return (int)(sum * check_negative);
+    }
+}
