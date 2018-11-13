@@ -1,0 +1,65 @@
+public class Solution {
+    public int paint(int A, int B, ArrayList<Integer> C) {
+        
+        int n = C.size();
+            
+        long sum = 0;
+        for(int i = 0 ; i < n ; i++)
+        {
+            sum += ((long)C.get(i));
+        }
+        
+        //  System.out.println(sum);
+        
+        long low = 0;
+        long high = sum;
+        long mid = 0;
+        long result = Integer.MAX_VALUE;
+        
+        while(low <= high)
+        {
+            mid = ((low + high)/2);
+            // System.out.println(low + "\t" + high);
+            // System.out.println(mid);
+            
+            if(ispossible(A ,mid , C))
+            {
+                result = Math.min(result , mid);
+                high = (mid - 1);
+            }
+            else
+                low = (mid + 1);
+
+        }
+        
+        return (int)(result%10000003 * B%10000003) % 10000003;
+    }
+    
+    public boolean ispossible(int k, long curr_max , ArrayList<Integer> a)
+    {
+        int n = a.size();
+        long curr_sum = 0;
+        int student = 1;
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            if((a.get(i)) > curr_max)
+                return false;
+            
+            if(((a.get(i)) + curr_sum) > curr_max)
+            {
+                student++;
+                curr_sum = (a.get(i));
+                if(student > k)
+                    return false;
+                
+            }
+            else
+                curr_sum += ((long)a.get(i));
+        }
+        
+        return true;
+    }
+}
+
+

@@ -1,0 +1,11 @@
+public class Solution {
+    public int searchInsert(ArrayList<Integer> a, int b) {
+        
+        int pos = Collections.binarySearch(a , b);
+        
+        if(pos < 0)
+            pos = Math.abs(pos) - 1;
+        
+        return pos;    
+    }
+}

@@ -1,0 +1,60 @@
+public class Solution {
+    public int findMedian(int[][] A) {
+        
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int n = A.length;
+        int m = A[0].length;
+        if(n == 1)
+        {
+            if(m == 1)
+                return A[0][0];
+                
+            return A[0][(A[0].length)/2];
+        }
+        
+        for(int i = 0 ; i < n ; i++ )
+        {
+            min = Math.min(A[i][0], min);
+        }
+        
+        for(int i = 0 ; i < n ; i++ )
+        {
+            max = Math.max(A[i][m-1] , max);
+        }
+        
+        int actual = (1 + (n*m))/2;
+        int count = 0;
+        
+        while(min < max)
+        {
+            int mid = min + (max - min)/2;
+            count = 0;
+            for(int i = 0 ; i < n ; i++)
+            {
+                int pos = Arrays.binarySearch(A[i] , mid);
+                
+                if(pos < 0)
+                    count += Math.abs(pos) - 1;
+                else{
+                    while(pos < A[i].length && A[i][pos] == mid)
+                        {pos += 1;}
+                    count += pos;
+                }
+                    
+                    
+                // System.out.println(mid);
+                // System.out.println(pos);
+                // System.out.println(count);
+            }
+            
+            if(count < actual)
+                min = mid+1;
+            else
+                max = mid;
+                
+        }
+        
+        return min;
+    }
+}

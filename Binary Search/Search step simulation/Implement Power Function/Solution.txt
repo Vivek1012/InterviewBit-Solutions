@@ -1,0 +1,50 @@
+public class Solution {
+    public int pow(int x, int n, int d) {
+        if(x == 0)
+        return 0;
+        long xx = x;
+        long v = n;
+        long dd = d;
+        
+            
+        long val = (int)myPow(xx  , v , dd);
+        
+        if(val < 0)
+            return (int)(d+val);
+        
+        return (int)val;
+    }
+    
+    public long myPow(long x , long n , long d)
+    {
+     if(n == 0)
+            return 1;
+        // if(n < 0)
+        // {
+        //     n = -n;
+        //     x = 1/x;
+        // }
+        // long value = 0;
+        // if(n%2 == 0) 
+        // {
+        //     value = (myPow(((x*x)%d) , (n/2), d))%d;
+        // }
+        // else
+        //  value = ((x%d) * myPow(((x*x)%d) , (n/2) ,d))%d;
+        
+        long y = 1;
+        
+        while(n > 0)
+        {
+            x = x*x;
+            n /= 2;
+            if(n%2 == 1)
+                y = x*x;
+            else
+                y = x;
+            
+        }
+        
+        return y;
+    }
+}

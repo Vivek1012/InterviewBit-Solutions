@@ -1,0 +1,60 @@
+public class Solution {
+    public int books(ArrayList<Integer> A, int B) {
+        int n = A.size();
+        if(n < B)
+            return -1;
+        
+        int sum = 0;
+        for(int i = 0 ; i < n ; i++)
+        {
+            sum += A.get(i);
+        }
+        
+        int low = 0;
+        int high = sum;
+        int mid = 0;
+        int result = Integer.MAX_VALUE;
+        
+        while(low <= high)
+        {
+            mid = (low + high)/2;
+            
+            if(ispossible(A , B , mid))
+            {
+                result = Math.min(result , mid);
+                high = mid-1;
+            }
+            else
+                low = mid + 1;
+            
+        }
+        
+        return result;
+    }
+    
+    public boolean ispossible(ArrayList<Integer> a , int k , int curr_max)
+    {
+        int n = a.size();
+        int curr_sum = 0;
+        int student = 1;
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            if(a.get(i) > curr_max)
+                return false;
+            
+            if(a.get(i) + curr_sum > curr_max)
+            {
+                student++;
+                curr_sum = a.get(i);
+                if(student > k)
+                    return false;
+                
+            }
+            else
+                curr_sum +=  a.get(i);
+        }
+        
+        return true;
+    }
+}
