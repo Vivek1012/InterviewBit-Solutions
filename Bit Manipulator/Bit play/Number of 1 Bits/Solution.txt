@@ -1,0 +1,21 @@
+public class Solution {
+    public int numSetBits(long a) {
+        
+        long n = a;
+        int count = 0;
+        
+        while(n>0)
+        {
+            if(n>0)    
+            {
+                n = n & (n-1);
+                count++;
+            }
+            else
+                break;
+        }
+        
+        return count;
+        
+    }
+}

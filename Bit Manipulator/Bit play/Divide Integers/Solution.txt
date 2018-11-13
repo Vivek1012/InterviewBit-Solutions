@@ -1,0 +1,33 @@
+public class Solution {
+    public int divide(int A, int B) {
+        
+        int count = 0;
+        
+        if(A == Integer.MAX_VALUE && B == -1)
+            return -A;
+        else if(A == Integer.MIN_VALUE && B == -1)
+            return Integer.MAX_VALUE;
+        else if(A == Integer.MAX_VALUE && B == 1)
+            return Integer.MAX_VALUE;
+        else if(A == Integer.MIN_VALUE && B == 1)
+            return Integer.MIN_VALUE;
+            
+        
+        long a = Math.abs(A);
+        long b = Math.abs(B);
+        
+        System.out.println(a);
+        System.out.println(b);
+        
+        while(a >= b)
+        {
+            ++count;
+            a = a-b;
+        }
+        
+        if((A > 0 && B > 0) || (A < 0 && B < 0))
+            return count;
+        
+        return (-1*count);
+    }
+}
