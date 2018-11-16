@@ -1,0 +1,103 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int minimize(final List<Integer> A, final List<Integer> B, final List<Integer> C) {
+    
+    
+     int na = A.size();
+        int nb = B.size();
+        int nc = C.size();
+        int i = 0 , j = 0 , k = 0;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int diff = Integer.MAX_VALUE;
+        
+        for(;i<na && j < nb && k < nc ;)
+        {
+            max = Math.max(B.get(j) , C.get(k));
+            max = Math.max(max , A.get(i));
+            
+            min = Math.min(B.get(j) , C.get(k));
+            min = Math.min(min , A.get(i));
+            
+            diff = Math.min(diff , Math.abs(max - min));
+            
+            if(diff < 0)
+                return 0;
+                
+            if(min == A.get(i))
+                i++;
+            else if(min == B.get(j))
+                j++;
+            else
+                k++; 
+        }
+        
+        return diff;
+    
+    
+        /*int na = A.size();
+        int nb = B.size();
+        int nc = C.size();
+        int i = 0, j = 0 , k = 0;
+        int min = Integer.MAX_VALUE;
+        int temp1 = 0, temp2 = 0, temp3 = 0;
+        int temp = Integer.MAX_VALUE;
+        
+        while(i < na || j < nb || k < nc)
+        {
+            int val1 = Math.abs(A.get(i) - B.get(j));
+            int val2 = Math.abs(B.get(j) - C.get(k));
+            int val3 = Math.abs(C.get(k) - A.get(i));
+            
+            min = Math.min(min , Math.max(val1 , Math.max(val2 , val3)));
+            
+            if(i+1 < na){
+                val1 = Math.abs(A.get(i+1) - B.get(j));
+                val3 = Math.abs(C.get(k) - A.get(i+1));
+                temp1 = Math.max(val1 , Math.max(val2 , val3));
+            }
+            else
+                temp1 = Integer.MAX_VALUE;
+            
+            if(j+1 < nb)           
+            {
+                val1 = Math.abs(A.get(i) - B.get(j+1));
+                val2 = Math.abs(B.get(j+1) - C.get(k));
+                temp2 = Math.max(val1 , Math.max(val2 , val3));
+            }
+            else
+                temp2 = Integer.MAX_VALUE;
+            
+            if(k+1 < nc) 
+            {
+                val2 = Math.abs(B.get(j) - C.get(k+1));
+                val3 = Math.abs(C.get(k+1) - A.get(i));
+                temp3 = Math.max(val1 , Math.max(val2 , val3));
+            }
+            else
+                temp3 = Integer.MAX_VALUE;
+            
+            temp = Math.min(temp1, temp2);
+            temp = Math.min(temp, temp3);
+            
+            if(temp == Integer.MAX_VALUE){
+                return min;
+            }
+            else if(temp == temp1){
+                i++;
+            }
+            else if(temp == temp2){
+                j++;
+            }
+            else{
+                k++;
+            }
+            
+        }
+        
+        if(min < 0)
+            return -min;
+            
+        return min;*/
+    }
+}

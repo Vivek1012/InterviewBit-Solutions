@@ -1,0 +1,39 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> threeSum(ArrayList<Integer> A) {
+        
+        Collections.sort(A);
+        int n = A.size();
+        ArrayList<Integer> ll = null;
+        ArrayList<ArrayList<Integer>> ls = new ArrayList<ArrayList<Integer>>();
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            int l = i+1;
+            int r = n-1;
+            
+            while(l < r)
+            {
+                int sum = A.get(l) + A.get(r) + A.get(i);
+                if(sum == 0)
+                {
+                    ll = new ArrayList<Integer>();
+                    ll.add(A.get(i));
+                    ll.add(A.get(l));
+                    ll.add(A.get(r));
+                    if(!ls.contains(ll))
+                        ls.add(ll);
+                    
+                    l++;
+                    r--;
+                }
+                else if(sum > 0)
+                    r--;
+                else
+                    l++;
+            }
+            
+        }
+        
+        return ls;
+    }
+}

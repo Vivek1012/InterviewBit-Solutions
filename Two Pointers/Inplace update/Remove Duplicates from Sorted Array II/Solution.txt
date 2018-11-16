@@ -1,0 +1,30 @@
+public class Solution {
+    public int removeDuplicates(ArrayList<Integer> a) {
+        
+        int i = 0;
+        int n = a.size();
+        ArrayList<Integer> b = new ArrayList<Integer>();
+        
+        if(n == 0 || n == 1 || n == 2)
+            return n;
+        
+        for(i = 0 ; i < n-2 ; i++)
+        {
+            int val1 = a.get(i);
+            int val2 = a.get(i+2);
+            if(val1 != val2)
+            {
+                b.add(a.get(i));
+            }
+        }
+        
+        b.add(a.get(n-2));
+        b.add(a.get(n-1));
+        a.clear();
+        
+        a.addAll(b);
+        
+        return b.size();
+        
+    }
+}

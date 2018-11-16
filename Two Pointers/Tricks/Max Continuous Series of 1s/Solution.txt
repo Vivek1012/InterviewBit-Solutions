@@ -1,0 +1,48 @@
+public class Solution {
+    public int[] maxone(int[] A, int B) {
+        
+        int l = 0;
+        int r = 0;
+        int n = A.length;
+        int left = 0;
+        // slide the window till you don't get the size more then B
+        
+        int diff = 0;
+        int count0 = 0;
+        int bestrange = 0;
+        
+        while(r < n)
+        {
+            if(count0 <= B)
+            {
+                if(A[r] == 0)  
+                    count0++;
+                r++;
+            }
+            
+            if(count0 > B)
+            {
+                if(A[l] == 0)
+                    count0--;
+                l++;
+            }
+            
+            if(bestrange < (r - l))
+                {
+                    bestrange = r - l;
+                    left = l;
+                }
+        }
+        
+        int arr[] = new int[bestrange];
+        
+        // System.out.println(left);
+        // System.out.println(bestrange);
+        for(int i = left ; i < bestrange+left ; i++)
+        {
+            arr[i-left] = i;
+        }
+        
+        return arr;
+    }
+}

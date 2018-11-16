@@ -1,0 +1,55 @@
+public class Solution {
+    public void merge(ArrayList<Integer> a, ArrayList<Integer> b) {
+        
+        
+        ArrayList t = new ArrayList();
+        
+        int i = 0, j = 0;
+        int n = a.size();
+        int m = b.size();
+        
+        if(n == 0){
+            a.addAll(b);
+            return;
+        }
+        else if(m == 0)
+        {
+            return;
+        }
+        else
+        {
+        
+            while(i < n && j < m)
+            {
+                if(a.get(i) < b.get(j))
+                    {
+                        t.add(a.get(i));
+                        i++;
+                    }
+                else{
+                        t.add(b.get(j));
+                        j++;
+                }
+            }
+            // System.out.println(i + "\t " + j);
+            
+            if(i < n && j == m)
+            {
+                for(; i < n ; i++)
+                {
+                    t.add(a.get(i));
+                }
+            }
+            else if(i == n && j < m)
+            {
+                for(; j < m ; j++)
+                {
+                    t.add(b.get(j));
+                }
+            }
+            // System.out.println(t);
+            a.clear();
+            a.addAll(t);
+        }
+    }
+}

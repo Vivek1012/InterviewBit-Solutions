@@ -1,0 +1,36 @@
+public class Solution {
+    public void sortColors(ArrayList<Integer> a) {
+        
+        int n = a.size();
+        int mid = 0;
+        int l = 0;
+        int r = n-1;
+        
+        while(mid <= r)
+        {
+            switch(a.get(mid)){
+                
+                case 0: swap(a ,mid , l);
+                        mid++;
+                        l++;
+                        break;
+                        
+                case 1: mid++;
+                        break;
+                        
+                case 2: swap(a ,mid , r);
+                        r--;
+                        break;
+                
+            }
+        }
+        
+    }
+    
+    public void swap(ArrayList<Integer> a , int x , int y)
+    {
+        int temp = a.get(x); 
+        a.set(x , a.get(y));
+        a.set(y , temp);
+    }
+}

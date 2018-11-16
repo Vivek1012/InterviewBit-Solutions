@@ -1,0 +1,35 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<Integer> C) {
+        
+        int na = A.size();
+        int nb = B.size();
+        int nc = C.size();
+        int i = 0 , j = 0 , k = 0;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int diff = Integer.MAX_VALUE;
+        
+        for(;i<na && j < nb && k < nc ;)
+        {
+            max = Math.max(B.get(j) , C.get(k));
+            max = Math.max(max , A.get(i));
+            
+            min = Math.min(B.get(j) , C.get(k));
+            min = Math.min(min , A.get(i));
+            
+            diff = Math.min(diff , Math.abs(max - min));
+            
+            if(diff < 0)
+                return 0;
+                
+            if(min == A.get(i))
+                i++;
+            else if(min == B.get(j))
+                j++;
+            else
+                k++; 
+        }
+        
+        return diff;
+    }
+}

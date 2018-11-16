@@ -1,0 +1,23 @@
+public class Solution {
+    public int maxArea(ArrayList<Integer> A) {
+        
+        int n = A.size();
+        int l = 0;
+        int r = n-1;
+        int maxarea = 0;
+        
+        while(l<=r)
+        {
+            maxarea = Math.max(maxarea , (Math.min(A.get(l) , A.get(r)) * (r-l)));
+            
+            if(A.get(l) < A.get(r))
+                l++;
+                
+            else
+                r--;
+        }
+        
+        return maxarea;
+        
+    }
+}

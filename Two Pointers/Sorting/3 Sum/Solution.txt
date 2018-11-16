@@ -1,0 +1,46 @@
+public class Solution {
+    public int threeSumClosest(int[] A, int B) {
+        
+        Arrays.sort(A);
+        int n = A.length;
+        int mindiff = Integer.MAX_VALUE;
+        int diff = Integer.MAX_VALUE;
+        int twosum = 0;
+        int val3 = 0;
+        int possible = 0;
+        
+        
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            int l = i+1;
+            int r = n-1;
+            while(l < r)
+            {
+               twosum = A[l] + A[r];
+               if(B - A[i] == twosum)
+                    {
+                        possible = B;
+                        return possible;
+                    }
+
+                    val3 = A[l] + A[r] + A[i];
+                    diff = Math.abs(B - val3);
+                    
+                    if(diff < mindiff)
+                    {
+                        mindiff = diff;
+                        possible = val3;
+                    }
+
+                
+                if(B-A[i] > twosum)
+                    l++;
+                else
+                    r--;
+            }
+        }
+        
+        return possible;
+    }
+}
