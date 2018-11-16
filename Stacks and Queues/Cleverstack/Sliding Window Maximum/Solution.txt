@@ -1,0 +1,33 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> slidingMaximum(final List<Integer> A, int B) {
+        
+        
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        Deque<Integer> d = new LinkedList<Integer>();
+        int n = A.size();
+        
+        for(Integer i = 0 ; i < B ; i++)
+        {
+            while(!d.isEmpty() && A.get(i) >= A.get(d.getLast()))
+                d.removeLast();
+            
+            d.addLast(i);
+        }
+        
+        for(Integer i = B ; i < n ; i++)
+        {
+            a.add(A.get(d.getFirst()));
+            while(!d.isEmpty() && A.get(i) >= A.get(d.getLast()))
+                d.removeLast();
+            while(!d.isEmpty() && d.getFirst() <= i - B) 
+                d.removeFirst();
+                
+            d.addLast(i);
+        }
+        
+        a.add(A.get(d.getFirst()));
+        
+        return a;
+    }
+}

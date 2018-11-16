@@ -1,0 +1,36 @@
+public class Solution {
+    public int evalRPN(ArrayList<String> A) {
+        
+        int n = A.size();
+        Stack<Integer> s = new Stack<Integer>();
+        
+        for(String c : A){
+            if(!c.equals("+") && !c.equals("-") && !c.equals("*") && !c.equals("/"))
+            {
+                s.push(Integer.parseInt(c));
+            }
+            else
+            {
+                
+                int val1 = s.pop();
+                int val2= s.pop();
+                
+                switch(c)
+                {
+                case "+"    : s.push(val1 + val2);
+                                break;
+                case "-"    : s.push(val2 - val1);
+                                break;
+                case "*"    : s.push(val1 * val2);
+                                break;
+                case "/"    : s.push(val2 / val1);
+                                break;
+                }
+            }
+        }
+        
+        return s.pop();
+        
+        
+    }
+}
